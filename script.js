@@ -1,5 +1,7 @@
 const form = document.querySelector("form");
+const listItems = document.querySelector(".items");
 
+// add items
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const input = document.querySelector("#item-input");
@@ -29,4 +31,24 @@ form.addEventListener("submit", (e) => {
   li.appendChild(btn);
   console.log(li);
   list.appendChild(li);
+});
+
+// delete items from list
+
+function removeItem(e) {
+  if (e.target.nodeName === "I") {
+    const li = e.target.closest("li");
+    li.remove();
+  }
+}
+
+listItems.addEventListener("click", removeItem);
+
+// clear items
+const clearItems = document.querySelector("#clear");
+clearItems.addEventListener("click", () => {
+  const ul = document.querySelector("ul");
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
 });
